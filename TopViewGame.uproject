@@ -7,7 +7,13 @@
 		{
 			"Name": "TopViewGame",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"GameplayAbilities",
+				"Engine",
+				"CoreUObject",
+				"UMG"
+			]
 		}
 	],
 	"Plugins": [
@@ -44,6 +50,10 @@
 		},
 		{
 			"Name": "PoseSearch",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayAbilities",
 			"Enabled": true
 		}
 	]
