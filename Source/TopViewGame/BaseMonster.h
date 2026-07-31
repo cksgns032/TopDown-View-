@@ -37,10 +37,13 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void PossessedBy(AController* NewController) override;
 
+// Data
 public:
 	// DT_Monster_Stat 등, Row Structure가 FMonsterStatRow(MonsterStatRow.h)로 지정된 데이터 테이블
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DataTable")
 	TObjectPtr<UDataTable> MonsterStatTable;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DataTable")
+	TObjectPtr<UDataTable> AttackDataTable;
 
 	// InitializeStats()에서 캐싱해두는 로우 데이터. UPROPERTY로 리플렉션 불가(UObject가 아닌 USTRUCT의
 	// raw 포인터는 UHT가 지원하지 않음) - MonsterStatTable이 살아있는 동안에만 유효하다.
@@ -53,11 +56,6 @@ public:
 	// 위 테이블에서 이 몬스터가 읽어올 로우 이름 (에디터에서 지정)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DataTable")
 	FName MonsterStatRowName;
-
-// MONTAGE
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Montage")
-	TArray<UAnimMontage*> AttackMontages;
 
 // WIDGET
 public:
@@ -107,6 +105,10 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_IsDead, Category = "Monster")
 	bool bIsDead = false;
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Montage")
+	TObjectPtr<UAnimMontage> HitMontage;
 
 protected:
 	UFUNCTION()
