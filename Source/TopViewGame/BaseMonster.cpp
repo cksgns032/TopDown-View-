@@ -4,6 +4,8 @@
 #include "AbilitySystemComponent.h"
 #include "Attribute_Common.h"
 #include "Components/WidgetComponent.h"
+#include "AIController.h"
+#include "BrainComponent.h"
 #include "../Widget_Hp.h"
 #include "BaseMonster.h"
 #include "GameplayEffect.h"
@@ -141,6 +143,14 @@ void ABaseMonster::Die_Implementation()
 
 	GetCharacterMovement()->DisableMovement();
 	SetActorEnableCollision(false);
+	AAIController* AiController = Cast<AAIController>(GetController());
+	if (AiController)
+	{
+		if (UBrainComponent* Brain = AiController->GetBrainComponent())
+		{
+			Brain->StopLogic(TEXT("Reason"));   // BT 실행 중단
+		}
+	}
 }
 
 void ABaseMonster::OnRep_IsDead()

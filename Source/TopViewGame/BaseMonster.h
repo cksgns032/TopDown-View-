@@ -37,7 +37,7 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void PossessedBy(AController* NewController) override;
 
-// Data
+// DATA
 public:
 	// DT_Monster_Stat 등, Row Structure가 FMonsterStatRow(MonsterStatRow.h)로 지정된 데이터 테이블
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "DataTable")
@@ -109,6 +109,8 @@ public:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Montage")
 	TObjectPtr<UAnimMontage> HitMontage;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Montage")
+	TObjectPtr<UAnimMontage> DeadMontage;
 
 protected:
 	UFUNCTION()
